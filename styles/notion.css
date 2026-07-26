@@ -445,7 +445,8 @@ summary > .notion-h {
 }
 
 .notion-h1 {
-  font-size: 1.05em;
+  font-size: 0.95em;
+  font-weight: 500;
   margin-top: 1.08em;
   @apply w-full;
   /* @apply border-b w-full; */
@@ -476,11 +477,13 @@ summary > .notion-h {
   margin-top: 2px;
 } */
 .notion-h2 {
-  font-size: 1em;
+  font-size: 0.9em;
+  font-weight: 500;
   margin-top: 1.1em;
 }
 .notion-h3 {
-  font-size: 0.95em;
+  font-size: 0.85em;
+  font-weight: 500;
   margin-top: 1em;
 }
 
