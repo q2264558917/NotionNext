@@ -318,7 +318,7 @@ const Style = () => {
     }
 
     #theme-fuwari #article-wrapper .notion-quote {
-      font-size: 1.1em;
+      font-size: 1.1em !important;
     }
 
     #theme-fuwari .catalog-item span {
