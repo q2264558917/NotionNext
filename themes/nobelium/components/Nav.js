@@ -52,14 +52,13 @@ const Nav = props => {
         id='sticky-nav'
         ref={navRef}>
         <div className='flex items-center'>
-          <SmartLink href='/' aria-label={siteConfig('TITLE')}>
-            <div className='h-6 w-6'>
-              {/* <SvgIcon/> */}
+          <SmartLink href='/' aria-label={siteConfig('TITLE')} className='group'>
+            <div className='h-10 w-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-amber-100 to-orange-100 group-hover:shadow-lg group-hover:shadow-orange-200 transition-all duration-300 group-hover:scale-110'>
               {siteConfig('NOBELIUM_NAV_NOTION_ICON') ? (
                 <LazyImage
                   src={siteInfo?.icon}
-                  width={24}
-                  height={24}
+                  width={28}
+                  height={28}
                   alt={siteConfig('AUTHOR')}
                 />
               ) : (
@@ -93,12 +92,6 @@ const NavBar = props => {
       href: '/feed',
       show: siteConfig('ENABLE_RSS') && siteConfig('NOBELIUM_MENU_RSS'),
       target: '_blank'
-    },
-    {
-      icon: 'fas fa-search',
-      name: locale.NAV.SEARCH,
-      href: '/search',
-      show: siteConfig('NOBELIUM_MENU_SEARCH')
     },
     {
       icon: 'fas fa-archive',
