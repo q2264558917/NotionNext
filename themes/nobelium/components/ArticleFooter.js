@@ -1,14 +1,9 @@
 import { useRouter } from 'next/router'
 import { useGlobal } from '@/lib/global'
+import Link from 'next/link'
 
-/**
- * 加密文章校验组件
- * @param {password, validPassword} props
- * @param password 正确的密码
- * @param validPassword(bool) 回调函数，校验正确回调入参为true
- * @returns
- */
 export const ArticleFooter = props => {
+  const { prev, next } = props
   const router = useRouter()
   const { locale } = useGlobal()
 
@@ -25,6 +20,37 @@ export const ArticleFooter = props => {
           </a>
         </p>
       </div>
+
+      {(prev || next) && (
+        <div className='grid grid-cols-2 gap-4 mb-6'>
+          {prev ? (
+            <Link
+              href={prev.href}
+              className='group block p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-amber-400 dark:hover:border-amber-400 transition-all duration-300 hover:shadow-md'>
+              <div className='text-xs text-gray-400 dark:text-gray-500 mb-1'>← 上一篇</div>
+              <div className='text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-amber-500 dark:group-hover:text-amber-400 line-clamp-1 transition-colors'>
+                {prev.title}
+              </div>
+            </Link>
+          ) : (
+            <div />
+          )}
+
+          {next ? (
+            <Link
+              href={next.href}
+              className='group block p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-amber-400 dark:hover:border-amber-400 transition-all duration-300 hover:shadow-md text-right'>
+              <div className='text-xs text-gray-400 dark:text-gray-500 mb-1'>下一篇 →</div>
+              <div className='text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-amber-500 dark:group-hover:text-amber-400 line-clamp-1 transition-colors'>
+                {next.title}
+              </div>
+            </Link>
+          ) : (
+            <div />
+          )}
+        </div>
+      )}
+
       <div className='flex justify-between font-medium text-gray-500 dark:text-gray-400'>
         <a>
           <button

@@ -219,7 +219,7 @@ const LayoutArchive = props => {
  * @returns
  */
 const LayoutSlug = props => {
-  const { post, lock, validPassword } = props
+  const { post, lock, validPassword, prev, next } = props
   const router = useRouter()
   const waiting404 = siteConfig('POST_WAITING_TIME_FOR_404') * 1000
   useEffect(() => {
@@ -253,7 +253,7 @@ const LayoutSlug = props => {
             </div>
             <ShareBar post={post} />
             <Comment frontMatter={post} />
-            <ArticleFooter />
+            <ArticleFooter prev={prev} next={next} />
           </>
         </div>
       )}
