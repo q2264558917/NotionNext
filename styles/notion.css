@@ -587,7 +587,7 @@ summary > .notion-h {
   border-left: 3px solid currentcolor;
   padding: 0.2em 0.9em;
   margin: 6px 0;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .notion-hr {
@@ -2020,7 +2020,7 @@ svg + .notion-page-title-text {
   border-left: 10px solid;
   padding: 0.2em 0.9em;
   margin: 6px 0;
-  font-size: 1em;
+  font-size: 1.1em;
   /* color: var(--notion-gray); */
 }
 
