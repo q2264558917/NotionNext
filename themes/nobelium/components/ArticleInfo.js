@@ -15,7 +15,7 @@ export const ArticleInfo = (props) => {
   return <section className="flex-wrap flex mt-2 text-gray--600 dark:text-gray-400 font-light leading-8">
         <div>
 
-            <h1 className="font-bold text-3xl text-black dark:text-white">
+            <h1 className="font-bold text-2xl text-black dark:text-white">
                 {siteConfig('POST_TITLE_ICON') && <NotionIcon icon={post?.pageIcon} />}{post?.title}
             </h1>
 
