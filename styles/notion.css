@@ -445,16 +445,21 @@ summary > .notion-h {
 }
 
 .notion-h1 {
-  font-size: 0.95em;
-  font-weight: 500;
-  margin-top: 1.08em;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  margin-top: 1em;
   @apply w-full;
-  /* @apply border-b w-full; */
 }
 .notion-h2 {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin-top: 1.1em;
   @apply w-full;
 }
 .notion-h3 {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  margin-top: 1em;
   @apply w-full;
 }
 
@@ -472,19 +477,6 @@ summary > .notion-h {
 
 .notion-h1:first-child {
   margin-top: 0;
-}
-/* .notion-h1:first-of-type {
-  margin-top: 2px;
-} */
-.notion-h2 {
-  font-size: 0.9em;
-  font-weight: 500;
-  margin-top: 1.1em;
-}
-.notion-h3 {
-  font-size: 0.85em;
-  font-weight: 500;
-  margin-top: 1em;
 }
 
 .notion-h:hover .notion-hash-link {
