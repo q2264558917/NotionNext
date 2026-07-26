@@ -13,23 +13,36 @@ export const ArticleFooter = props => {
   const { locale } = useGlobal()
 
   return (
-    <div className='flex justify-between font-medium text-gray-500 dark:text-gray-400'>
-      <a>
-        <button
-          onClick={() => {
-            void router.push('/')
-          }}
-          className='mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100'>
-          ← {locale.POST.BACK}
-        </button>
-      </a>
-      <a>
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className='mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100'>
-          ↑ {locale.POST.TOP}
-        </button>
-      </a>
+    <div>
+      <div className='my-6 text-center text-gray-500 dark:text-gray-400 text-sm'>
+        <p>
+          <i className='fas fa-envelope mr-1' />
+          QQ邮箱：
+          <a
+            href='mailto:2264558917@qq.com'
+            className='hover:text-black dark:hover:text-gray-100 underline'>
+            2264558917@qq.com
+          </a>
+        </p>
+      </div>
+      <div className='flex justify-between font-medium text-gray-500 dark:text-gray-400'>
+        <a>
+          <button
+            onClick={() => {
+              void router.push('/')
+            }}
+            className='mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100'>
+            ← {locale.POST.BACK}
+          </button>
+        </a>
+        <a>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className='mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100'>
+            ↑ {locale.POST.TOP}
+          </button>
+        </a>
+      </div>
     </div>
   )
 }
