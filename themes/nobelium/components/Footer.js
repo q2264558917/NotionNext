@@ -1,14 +1,10 @@
 import DarkModeButton from '@/components/DarkModeButton'
-import Vercel from '@/components/Vercel'
 import { siteConfig } from '@/lib/config'
 
 export const Footer = (props) => {
-  const d = new Date()
-  const currentYear = d.getFullYear()
   const { post } = props
   const fullWidth = post?.fullWidth ?? false
-  const since = siteConfig('SINCE')
-  const copyrightDate = parseInt(since) < currentYear ? since + '-' + currentYear : currentYear
+  const copyrightDate = '2026-2036'
 
   return <footer
      className={`z-10 relative mt-6 flex-shrink-0 m-auto w-full text-gray-500 dark:text-gray-400 transition-all ${
@@ -22,7 +18,6 @@ export const Footer = (props) => {
          <p>
            © {siteConfig('AUTHOR')} {copyrightDate}
          </p>
-         <Vercel />
        </div>
      </div>
    </footer>
