@@ -445,20 +445,20 @@ summary > .notion-h {
 }
 
 .notion-h1 {
-  font-size: 15px !important;
-  font-weight: 500 !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
   margin-top: 1em;
   @apply w-full;
 }
 .notion-h2 {
-  font-size: 14px !important;
-  font-weight: 500 !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
   margin-top: 1.1em;
   @apply w-full;
 }
 .notion-h3 {
-  font-size: 13px !important;
-  font-weight: 500 !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
   margin-top: 1em;
   @apply w-full;
 }
