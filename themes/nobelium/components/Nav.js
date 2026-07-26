@@ -67,7 +67,7 @@ const Nav = props => {
               )}
             </div>
           </SmartLink>
-          <p className='logo line-clamp-1 overflow-ellipsis ml-2 font-bold text-xl md:text-2xl text-gray-800 dark:text-gray-100 header-name whitespace-nowrap tracking-wide'>
+          <p className='logo line-clamp-1 overflow-ellipsis ml-2 font-extrabold text-2xl md:text-3xl text-gray-900 dark:text-white header-name whitespace-nowrap tracking-wide'>
             {siteConfig('TITLE')}
           </p>
         </div>
