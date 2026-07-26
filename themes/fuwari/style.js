@@ -317,6 +317,10 @@ const Style = () => {
       font-size: 1rem;
     }
 
+    #theme-fuwari #article-wrapper .notion-quote {
+      font-size: 1.1em;
+    }
+
     #theme-fuwari .catalog-item span {
       color: var(--fuwari-muted);
     }
