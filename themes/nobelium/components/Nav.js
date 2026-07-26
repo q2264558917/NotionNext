@@ -67,16 +67,9 @@ const Nav = props => {
               )}
             </div>
           </SmartLink>
-          {post ? (
-            <p className='ml-2 max-h-12 line-clamp-2 overflow-ellipsis font-medium text-gray-800 dark:text-gray-300 header-name'>
-              {post?.title}
-            </p>
-          ) : (
-            <p className='logo line-clamp-1 overflow-ellipsis ml-2 font-medium text-gray-800 dark:text-gray-300 header-name whitespace-nowrap'>
-              {siteConfig('TITLE')}
-              {/* ,{' '}<span className="font-normal">{siteConfig('DESCRIPTION')}</span> */}
-            </p>
-          )}
+          <p className='logo line-clamp-1 overflow-ellipsis ml-2 font-bold text-xl md:text-2xl text-gray-800 dark:text-gray-100 header-name whitespace-nowrap tracking-wide'>
+            {siteConfig('TITLE')}
+          </p>
         </div>
         <NavBar {...props} />
       </div>
