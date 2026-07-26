@@ -319,6 +319,7 @@ const Style = () => {
 
     #theme-fuwari #article-wrapper .notion-quote {
       font-size: 1.1em !important;
+      line-height: 1.8;
     }
 
     #theme-fuwari .catalog-item span {
