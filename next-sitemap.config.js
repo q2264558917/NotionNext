@@ -5,7 +5,6 @@ module.exports = {
   siteUrl: "https://www.qinqinlife.com",
   changefreq: "daily",
   priority: 0.7,
-  generateRobotsTxt: true,
+  generateRobotsTxt: false,
   sitemapSize: 7000
 }
-
