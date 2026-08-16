@@ -5,6 +5,45 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
+
+/**
+ * 规范化链接：强制使用 https://www 前缀，去除末尾斜杠
+ * 优先级：不管配置来自 Notion 还是环境变量，都统一修正到正确域名格式
+ */
+function normalizeUrl(u) {
+  if (!u) return u;
+  try {
+    let url = String(u).trim().replace(/\/+$/, '');
+    // 替换 http:// -> https://
+    if (url.startsWith('http://')) {
+      url = 'https://' + url.slice(7);
+    }
+    // 确保有协议头
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      url = 'https://' + url.replace(/^\/+/, '');
+    }
+    // 强制 www. 前缀（排除本地开发和 IP）
+    const parsed = new URL(url);
+    const host = parsed.hostname;
+    if (
+      host &&
+      !host.startsWith('www.') &&
+      !host.includes('localhost') &&
+      !host.includes('127.0.0.1') &&
+      !/^\d+\.\d+\.\d+\.\d+$/.test(host) &&
+      !host.includes('vercel.app')
+    ) {
+      url = url.replace(
+        `${parsed.protocol}//${parsed.host}`,
+        `${parsed.protocol}//www.${parsed.host}`
+      );
+    }
+    return url;
+  } catch (e) {
+    return u;
+  }
+}
+
 /**
  * 页面的Head头，有用于SEO
  * @param {*} param0
@@ -13,7 +52,7 @@ import { useEffect } from 'react'
 const SEO = props => {
   const { children, siteInfo, post, NOTION_CONFIG } = props
   const PATH = siteConfig('PATH')
-  const LINK = siteConfig('LINK')
+  const LINK = normalizeUrl(siteConfig('LINK'))
   const SUB_PATH = siteConfig('SUB_PATH', '')
   let url = PATH?.length ? `${LINK}/${SUB_PATH}` : LINK
   let image
@@ -53,8 +92,10 @@ const SEO = props => {
     keywords = post?.tags?.join(',')
   }
   if (meta) {
-    url = `${url}/${meta.slug}`
+    url = normalizeUrl(`${url}/${meta.slug}`)
     image = meta.image || '/bg_image.jpg'
+  } else {
+    url = normalizeUrl(url);
   }
   const TITLE = siteConfig('TITLE')
   const title = meta?.title || TITLE
@@ -156,6 +197,8 @@ const SEO = props => {
       <meta property='og:image:alt' content={title} />
       <meta property='og:site_name' content={siteConfig('TITLE')} />
       <meta property='og:type' content={type} />
+      <link rel='canonical' href={url} />
+
 
       {/* Twitter Card 元数据 */}
       <meta name='twitter:card' content='summary_large_image' />
@@ -239,7 +282,7 @@ const generateStructuredData = (meta, siteInfo, url, image, author) => {
     '@type': 'WebSite',
     name: siteInfo?.title,
     description: siteInfo?.description,
-    url: siteConfig('LINK'),
+    url: normalizeUrl(siteConfig('LINK')),
     author: {
       '@type': 'Person',
       name: author
