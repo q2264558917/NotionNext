@@ -44,6 +44,34 @@ function normalizeUrl(u) {
   }
 }
 
+
+/**
+ * 把任意格式日期统一成 Schema.org 要求的 ISO 8601 (YYYY-MM-DD)
+ */
+function toIsoDate(input) {
+  if (!input) return undefined
+  try {
+    const str = String(input).trim()
+    let d
+    if (/^\d{4}-\d{2}-\d{2}T/.test(str)) {
+      d = new Date(str)
+    } else {
+      const m = str.match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})/)
+      if (m) {
+        const pad = n => String(n).padStart(2, '0')
+        d = new Date(m[1] + '-' + pad(m[2]) + '-' + pad(m[3]) + 'T00:00:00')
+      } else {
+        d = new Date(str)
+      }
+    }
+    if (!isNaN(d.getTime())) {
+      const pad = n => String(n).padStart(2, '0')
+      return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate())
+    }
+  } catch (e) {}
+  return typeof input === 'string' ? input : undefined
+}
+
 /**
  * 页面的Head头，有用于SEO
  * @param {*} param0
@@ -299,22 +327,45 @@ const generateStructuredData = (meta, siteInfo, url, image, author) => {
 
   // 如果是文章页面，添加文章结构化数据
   if (meta?.type === 'Post') {
+    const lang = siteConfig('LANG') || 'zh-CN'
+    const summary = (meta.description || siteInfo?.description || '').toString()
+    const articleBody = meta.summary || summary
+    const wcRaw = meta.wordCount || (typeof summary === 'string' ? Math.max(100, summary.length) : undefined)
+    const authorHome = normalizeUrl(siteConfig('LINK'))
+    const published = toIsoDate(meta.publishDay)
+    const modified = toIsoDate(meta.lastEditedDay) || published
+    const tagsJoined = (meta.tags && meta.tags.length > 0)
+      ? meta.tags.join(', ')
+      : siteConfig('KEYWORDS', '')
+    const section = meta.category || meta.keywords || tagsJoined.split(',')[0] || undefined
+
     return {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
       headline: meta.title,
-      description: meta.description,
+      description: summary,
       image: image,
       url: url,
-      datePublished: meta.publishDay,
-      dateModified: meta.lastEditedDay || meta.publishDay,
+      datePublished: published,
+      dateModified: modified,
+      inLanguage: lang,
+      wordCount: Number.isFinite(wcRaw) ? wcRaw : undefined,
+      articleBody: articleBody ? articleBody.substring(0, 5000) : undefined,
       author: {
+        '@type': 'Person',
+        name: author,
+        url: authorHome,
+        sameAs: authorHome
+      },
+      copyrightHolder: {
         '@type': 'Person',
         name: author
       },
+      license: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans',
       publisher: {
         '@type': 'Organization',
         name: siteInfo?.title,
+        url: authorHome,
         logo: {
           '@type': 'ImageObject',
           url: siteInfo?.icon
@@ -324,8 +375,8 @@ const generateStructuredData = (meta, siteInfo, url, image, author) => {
         '@type': 'WebPage',
         '@id': url
       },
-      keywords: meta.tags?.join(', '),
-      articleSection: meta.category
+      keywords: tagsJoined,
+      articleSection: section
     }
   }
 
