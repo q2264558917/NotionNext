@@ -1,6 +1,14 @@
 User-agent: *
 Allow: /
+Crawl-delay: 2
+
+# 字节系爬虫：大规模抓取但极少给来源回流，限频保护带宽
+User-agent: Bytespider
+Crawl-delay: 10
+
+# 搜狗/360/神马如果疯狂抓取，可以酌情再加 Disallow
+User-agent: Sogou web spider
+Crawl-delay: 5
 
 Host: https://www.qinqinlife.com
-
 Sitemap: https://www.qinqinlife.com/sitemap.xml
