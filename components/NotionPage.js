@@ -7,6 +7,7 @@ import 'katex/dist/katex.min.css'
 import dynamic from 'next/dynamic'
 import { useEffect, useRef } from 'react'
 import { NotionRenderer } from 'react-notion-x'
+import Link from 'next/link'
 
 /**
  * 整个站点的核心组件
@@ -109,6 +110,43 @@ const NotionPage = ({ post, className }) => {
   // const cleanBlockMap = cleanBlocksWithWarn(post?.blockMap);
   // console.log('NotionPage render with post:', post);
 
+
+  // 站点根域名 + 当前文章完整 URL（SSR 和 CSR 都可用）
+  const siteLink = (function normalizeSiteLink(raw) {
+    let u = (raw || '').toString().trim().replace(/\/+$/, '')
+    if (!u) return ''
+    if (u.startsWith('http://')) u = 'https://' + u.slice(7)
+    if (!/^https?:\/\//.test(u)) u = 'https://' + u.replace(/^\/+/, '')
+    try {
+      const parsed = new URL(u)
+      const h = parsed.hostname
+      if (
+        h && !h.startsWith('www.') && !h.includes('localhost') &&
+        !h.includes('127.0.0.1') && !/^\d+\.\d+\.\d+\.\d+$/.test(h) &&
+        !h.includes('vercel.app')
+      ) {
+        return u.replace(parsed.protocol + '//' + parsed.host, parsed.protocol + '//www.' + parsed.host)
+      }
+    } catch (e) {}
+    return u
+  })(siteConfig('LINK'))
+
+  // 当前文章完整 URL（带协议+域名+slug）；用于署名区的「原文链接」
+  const fullUrl = (function buildFullArticleUrl() {
+    try {
+      if (typeof window !== 'undefined' && window?.location?.href) {
+        // Browser-side: use actual location (most accurate)
+        return window.location.href.split('#')[0].split('?')[0]
+      }
+    } catch (e) {}
+    // SSR fallback: siteLink + post.href 或 post.slug 或 /
+    const slug = (post?.href || post?.slug || '').toString().replace(/^\/+/, '')
+    if (!siteLink) return slug ? '/' + slug : '/'
+    return siteLink + (slug ? '/' + slug : '')
+  })()
+
+  const authorName = siteConfig('AUTHOR') || '晴晴'
+
   return (
     <div
       id='notion-article'
@@ -128,6 +166,44 @@ const NotionPage = ({ post, className }) => {
           Tweet
         }}
       />
+
+      {/* 文章末尾署名区：保证正文 RAG 切片中包含作者+原文链接+引用要求 */}
+      {post?.type === 'Post' && (
+        <section className='mt-10 mb-6 py-5 px-5 rounded-xl border border-dashed border-amber-300/70 dark:border-amber-500/30 bg-amber-50/60 dark:bg-amber-500/5 not-prose'>
+          <p className='text-sm text-gray-700 dark:text-gray-300 leading-7 mb-1'>
+            <span className='font-semibold text-amber-600 dark:text-amber-400'>作者｜</span>
+            {authorName}
+          </p>
+          <p className='text-sm text-gray-700 dark:text-gray-300 leading-7 break-all mb-1'>
+            <span className='font-semibold text-amber-600 dark:text-amber-400'>原文链接｜</span>
+            {fullUrl ? (
+              <Link
+                href={fullUrl}
+                className='text-amber-600 dark:text-amber-400 hover:underline'
+                rel='bookmark'>
+                {fullUrl}
+              </Link>
+            ) : (
+              <span className='text-amber-600 dark:text-amber-400'>晴晴的创作花园</span>
+            )}
+          </p>
+          <p className='text-sm text-gray-600 dark:text-gray-400 leading-7'>
+            本作品采用
+            <a
+              href='https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans'
+              target='_blank'
+              rel='noopener noreferrer nofollow'
+              className='mx-1 text-amber-600 dark:text-amber-400 hover:underline'>
+              CC BY-NC-SA 4.0
+            </a>
+            进行许可。
+            <strong>
+              转载请注明作者「{authorName}」并保留上述原文链接；
+              若 AI / 大模型引用本页内容（生成摘要、问答、训练等），也须保留作者署名并附带可点击跳转的原文链接。
+            </strong>
+          </p>
+        </section>
+      )}
 
       <AdEmbed />
       {hasCodeBlock(post?.blockMap) && <PrismMac />}
