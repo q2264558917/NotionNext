@@ -52,9 +52,7 @@ module.exports = {
     '"Segoe UI Symbol"',
     '"Apple Color Emoji"'
   ],
-  FONT_AWESOME:
-    process.env.NEXT_PUBLIC_FONT_AWESOME_PATH ||
-    '' // 已禁用 FontAwesome（改用 @tabler/icons-react）。如需恢复: '/vendor/fontawesome/css/all.min.css'
+  FONT_AWESOME: '' // 已禁用 FontAwesome（改用 @tabler/icons-react）。如需恢复: '/vendor/fontawesome/css/all.min.css'。注：此值硬编码禁用，不受 NEXT_PUBLIC_FONT_AWESOME_PATH 环境变量影响
 
   // END ************网站字体*****************
 }
