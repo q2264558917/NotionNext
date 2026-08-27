@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import Icon from '@/components/Icon'
 import { useGlobal } from '@/lib/global'
 import { useImperativeHandle, useRef, useState } from 'react'
 
@@ -74,12 +75,12 @@ const SearchInput = props => {
 
   <div className='-ml-8 cursor-pointer float-right items-center justify-center py-2'
     onClick={handleSearch}>
-      <i className={'hover:text-black transform duration-200  text-gray-500 cursor-pointer fas fa-search'} />
+      <Icon name="search" className="hover:text-black transform duration-200 text-gray-500 cursor-pointer" />
   </div>
 
   {(showClean &&
     <div className='-ml-12 cursor-pointer dark:bg-gray-600 dark:hover:bg-gray-800 float-right items-center justify-center py-2'>
-      <i className='hover:text-black transform duration-200 text-gray-400 cursor-pointer fas fa-times' onClick={cleanSearch} />
+      <Icon name="close" className="hover:text-black transform duration-200 text-gray-400 cursor-pointer" onClick={cleanSearch} />
     </div>
     )}
 </section>

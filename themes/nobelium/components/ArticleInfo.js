@@ -1,5 +1,6 @@
 
 import LazyImage from '@/components/LazyImage'
+import Icon from '@/components/Icon'
 import TagItem from './TagItem'
 import md5 from 'js-md5'
 import { siteConfig } from '@/lib/config'
@@ -45,7 +46,7 @@ export const ArticleInfo = (props) => {
                         </div>
                     )}
                     <span className="hidden busuanzi_container_page_pv mr-2">
-                        <i className='mr-1 fas fa-eye' />
+                        <Icon name="eye" className="mr-1" />
                         &nbsp;
                         <span className="mr-2 busuanzi_value_page_pv" />
                     </span>

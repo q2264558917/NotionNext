@@ -1,4 +1,5 @@
 import Comment from '@/components/Comment'
+import Icon from '@/components/Icon'
 import Live2D from '@/components/Live2D'
 import replaceSearchResult from '@/components/Mark'
 import NotionPage from '@/components/NotionPage'
@@ -283,7 +284,7 @@ const Layout404 = props => {
   return <>
         <div className='md:-mt-20 text-black w-full h-screen text-center justify-center content-center items-center flex flex-col'>
             <div className='dark:text-gray-200'>
-                <h2 className='inline-block border-r-2 border-gray-600 mr-2 px-3 py-2 align-top'><i className='mr-2 fas fa-spinner animate-spin' />404</h2>
+                <h2 className='inline-block border-r-2 border-gray-600 mr-2 px-3 py-2 align-top'><Icon name="loader" className="mr-2 animate-spin inline" />404</h2>
                 <div className='inline-block text-left h-32 leading-10 items-center'>
                     <h2 className='m-0 p-0'>页面无法加载，即将返回首页</h2>
                 </div>
@@ -314,7 +315,7 @@ const LayoutCategoryIndex = props => {
                 className={
                   'hover:text-black dark:hover:text-white dark:text-gray-300 dark:hover:bg-gray-600 px-5 cursor-pointer py-2 hover:bg-gray-100'
                 }>
-                <i className='mr-4 fas fa-folder' />
+                <Icon name="folder" className="mr-4 inline" />
                 {category.name}({category.count})
               </div>
             </SmartLink>
@@ -345,7 +346,7 @@ const LayoutTagIndex = props => {
                   passHref
                   className={`cursor-pointer inline-block rounded hover:bg-gray-500 hover:text-white duration-200 mr-2 py-1 px-2 text-xs whitespace-nowrap dark:hover:text-white text-gray-600 hover:shadow-xl dark:border-gray-400 notion-${tag.color}_background dark:bg-gray-800`}>
                   <div className='font-light dark:text-gray-400'>
-                    <i className='mr-1 fas fa-tag' />{' '}
+                    <Icon name="tag" className="mr-1 inline" />{' '}
                     {tag.name + (tag.count ? `(${tag.count})` : '')}{' '}
                   </div>
                 </SmartLink>

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useGlobal } from '@/lib/global'
 import Link from 'next/link'
+import Icon from '@/components/Icon'
 
 export const ArticleFooter = props => {
   const { prev, next } = props
@@ -11,7 +12,7 @@ export const ArticleFooter = props => {
     <div>
       <div className='my-6 text-center text-gray-500 dark:text-gray-400 text-sm'>
         <p>
-          <i className='fas fa-envelope mr-1' />
+          <Icon name="envelope" className="mr-1" />
           QQ邮箱：
           <a
             href='mailto:2264558917@qq.com'

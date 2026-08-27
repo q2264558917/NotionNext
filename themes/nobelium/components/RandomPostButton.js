@@ -1,4 +1,5 @@
 import { siteConfig } from '@/lib/config'
+import Icon from '@/components/Icon'
 import { useGlobal } from '@/lib/global'
 import { useRouter } from 'next/router'
 
@@ -20,7 +21,7 @@ export default function RandomPostButton(props) {
 
   return (
         <div title={locale.MENU.WALK_AROUND} className='cursor-pointer hover:bg-black hover:bg-opacity-10 rounded-full w-10 h-10 flex justify-center items-center duration-200 transition-all' onClick={handleClick}>
-            <i className="fa-solid fa-podcast"></i>
+            <Icon name="podcast" />
         </div>
   )
 }

@@ -1,5 +1,6 @@
 import SmartLink from '@/components/SmartLink'
 import { useState } from 'react'
+import Icon from '@/components/Icon'
 
 export const MenuItemDrop = ({ link }) => {
   const [show, changeShow] = useState(false)
@@ -20,16 +21,16 @@ export const MenuItemDrop = ({ link }) => {
         {!hasSubMenu && (
           <div className='block text-black dark:text-gray-50 nav'>
             <SmartLink href={link?.href} target={link?.target}>
-              {link?.icon && <i className={link?.icon} />} {link?.name}
+              {link?.icon && <Icon name={link?.icon} />} {link?.name}
             </SmartLink>
           </div>
         )}
 
         {hasSubMenu && (
           <div className='block text-black dark:text-gray-50 nav'>
-            {link?.icon && <i className={link?.icon} />} {link?.name}
-            <i
-              className={`px-2 fas fa-chevron-down duration-500 transition-all ${show ? ' rotate-180' : ''}`}></i>
+            {link?.icon && <Icon name={link?.icon} />} {link?.name}
+            <Icon name="chevron-down"
+              className={`px-2 duration-500 transition-all ${show ? ' rotate-180' : ''}`} />
           </div>
         )}
 
@@ -44,7 +45,7 @@ export const MenuItemDrop = ({ link }) => {
                   className='not:last-child:border-b-0 border-b text-gray-700 dark:text-gray-200  hover:bg-gray-50 dark:hover:bg-gray-900 tracking-widest transition-all duration-200  dark:border-gray-800 py-3 pr-6 pl-3'>
                   <SmartLink href={sLink.href} target={link?.target}>
                     <span className='text-sm text-nowrap font-extralight'>
-                      {link?.icon && <i className={sLink?.icon}> &nbsp; </i>}
+                      {link?.icon && <Icon name={sLink?.icon} className="inline" /> &nbsp;}
                       {sLink.title}
                     </span>
                   </SmartLink>

@@ -1,4 +1,5 @@
 import Collapse from '@/components/Collapse'
+import Icon from '@/components/Icon'
 import SmartLink from '@/components/SmartLink'
 import { useState } from 'react'
 
@@ -39,7 +40,7 @@ export const MenuItemCollapse = props => {
             <span className=' hover:text-red-400 transition-all items-center duration-200'>
               {link?.icon && (
                 <span className='mr-2'>
-                  <i className={link.icon} />
+                  <Icon name={link.icon} />
                 </span>
               )}
               {link?.name}
@@ -53,12 +54,12 @@ export const MenuItemCollapse = props => {
             <span className=' hover:text-red-400 transition-all items-center duration-200'>
               {link?.icon && (
                 <span className='mr-2'>
-                  <i className={link.icon} />
+                  <Icon name={link.icon} />
                 </span>
               )}
               {link?.name}
             </span>
-            <i className='px-2 fa fa-plus text-gray-400'></i>
+            <Icon name="plus" className="px-2 text-gray-400" />
           </div>
         )}
       </div>

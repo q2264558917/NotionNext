@@ -1,4 +1,5 @@
 import { useGlobal } from '@/lib/global'
+import Icon from '@/components/Icon'
 import { useEffect, useRef } from 'react'
 
 /**
@@ -43,7 +44,7 @@ export const ArticleLock = props => {
                     className='outline-none w-full text-sm pl-5 rounded-l transition focus:shadow-lg font-light leading-10 text-black dark:bg-gray-500 bg-gray-50'
                 ></input>
                 <div onClick={submitPassword} className="px-3 whitespace-nowrap cursor-pointer items-center justify-center py-2 rounded-r duration-300 bg-gray-300" >
-                    <i className={'duration-200 cursor-pointer fas fa-key dark:text-black'} >&nbsp;{locale.COMMON.SUBMIT}</i>
+                    <Icon name="key" className="duration-200 cursor-pointer dark:text-black" />&nbsp;{locale.COMMON.SUBMIT}
                 </div>
             </div>
             <div id='tips'>

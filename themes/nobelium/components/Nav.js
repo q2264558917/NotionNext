@@ -1,4 +1,5 @@
 import Collapse from '@/components/Collapse'
+import Icon from '@/components/Icon'
 import DarkModeButton from '@/components/DarkModeButton'
 import LazyImage from '@/components/LazyImage'
 import { siteConfig } from '@/lib/config'
@@ -94,19 +95,19 @@ const NavBar = props => {
       target: '_blank'
     },
     {
-      icon: 'fas fa-archive',
+      icon: 'archive',
       name: locale.NAV.ARCHIVE,
       href: '/archive',
       show: siteConfig('NOBELIUM_MENU_ARCHIVE')
     },
     {
-      icon: 'fas fa-folder',
+      icon: 'folder',
       name: locale.COMMON.CATEGORY,
       href: '/category',
       show: siteConfig('NOBELIUM_MENU_CATEGORY')
     },
     {
-      icon: 'fas fa-tag',
+      icon: 'tag',
       name: locale.COMMON.TAGS,
       href: '/tag',
       show: siteConfig('NOBELIUM_MENU_TAG')
@@ -160,9 +161,7 @@ const NavBar = props => {
         <RandomPostButton {...props} />
       )}
       {siteConfig('NOBELIUM_MENU_SEARCH_BUTTON') && <SearchButton {...props} />}
-      <i
-        onClick={toggleOpen}
-        className='fas fa-bars cursor-pointer px-5 flex justify-center items-center md:hidden'></i>
+      <Icon name="menu" onClick={toggleOpen} className=" cursor-pointer px-5 flex justify-center items-center md:hidden" />
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import { useGlobal } from '@/lib/global'
+import Icon from '@/components/Icon'
 
 /**
  * 跳转到网页顶部
@@ -11,7 +12,7 @@ import { useGlobal } from '@/lib/global'
 const JumpToTopButton = () => {
   const { locale } = useGlobal()
   return <div title={locale.POST.TOP} className='cursor-pointer p-2 text-center' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-    ><i className='fas fa-angle-up text-2xl' />
+    ><Icon name="angle-up" className="text-2xl" />
     </div>
 }
 
