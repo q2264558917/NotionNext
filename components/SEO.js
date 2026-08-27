@@ -278,17 +278,18 @@ const SEO = props => {
         }}
       />
 
-      {/* DNS预取和预连接 */}
-      {webFontUrl && <link rel='dns-prefetch' href='//fonts.googleapis.com' />}
-      <link rel='dns-prefetch' href='//www.google-analytics.com' />
-      <link rel='dns-prefetch' href='//www.googletagmanager.com' />
-      {webFontUrl && (
-        <link
-          rel='preconnect'
-          href='https://fonts.gstatic.com'
-          crossOrigin='anonymous'
-        />
+      {/* DNS预取和预连接 — Google相关全部移除（国内无法访问会导致页面卡住超时几十秒） */}
+      {webFontUrl && webFontUrl.some(u => u && u.includes('fonts.googleapis')) && (
+        <>
+          <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+          <link
+            rel='preconnect'
+            href='https://fonts.gstatic.com'
+            crossOrigin='anonymous'
+          />
+        </>
       )}
+      {/* 国内环境屏蔽 Google Analytics / Tag Manager 的无效 DNS 预取，避免等待超时 */}
 
       {children}
     </Head>
