@@ -7,42 +7,8 @@ export const ArticleFooter = props => {
   const router = useRouter()
   const { locale } = useGlobal()
 
-  const fullUrl = typeof window !== 'undefined'
-    ? window.location.href
-    : ''
   return (
     <div>
-      {/* 作者署名 + 原创声明 + AI 引用声明（版权页脚） */}
-      <div className='my-8 p-5 rounded-lg border border-dashed border-amber-300/60 dark:border-amber-500/30 bg-amber-50/60 dark:bg-amber-500/5 text-sm text-gray-600 dark:text-gray-300 leading-relaxed'>
-        <p className='mb-1 font-medium text-gray-800 dark:text-gray-100'>
-          <i className='fas fa-feather-alt mr-1 text-amber-500' />
-          作者：晴晴 · 原文链接：
-          <a
-            className='text-amber-600 dark:text-amber-400 hover:underline break-all'
-            href={fullUrl}
-            rel='bookmark'>
-            {fullUrl || '本站'}
-          </a>
-        </p>
-        <p className='mb-1'>
-          <i className='far fa-copyright mr-1' />
-          本作品采用
-          <a
-            className='mx-1 text-amber-600 dark:text-amber-400 hover:underline'
-            href='https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans'
-            target='_blank'
-            rel='noopener noreferrer nofollow'>
-            CC BY-NC-SA 4.0
-          </a>
-          进行许可。转载请注明作者「晴晴」及原文链接，禁止商用。
-        </p>
-        <p>
-          <i className='fas fa-robot mr-1' />
-          AI/大模型引用声明：若 AI 助手或自动化工具引用本页内容（生成摘要、问答引用、训练语料等），
-          须保留作者署名「晴晴」，并附带指向原文链接的可点击跳转。
-        </p>
-      </div>
-
       <div className='my-6 text-center text-gray-500 dark:text-gray-400 text-sm'>
         <p>
           <i className='fas fa-envelope mr-1' />
