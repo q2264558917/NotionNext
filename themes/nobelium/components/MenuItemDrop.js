@@ -45,7 +45,7 @@ export const MenuItemDrop = ({ link }) => {
                   className='not:last-child:border-b-0 border-b text-gray-700 dark:text-gray-200  hover:bg-gray-50 dark:hover:bg-gray-900 tracking-widest transition-all duration-200  dark:border-gray-800 py-3 pr-6 pl-3'>
                   <SmartLink href={sLink.href} target={link?.target}>
                     <span className='text-sm text-nowrap font-extralight'>
-                      {link?.icon && <Icon name={sLink?.icon} className="inline" /> &nbsp;}
+                      {sLink?.icon && <><Icon name={sLink?.icon} className="inline" />&nbsp;</>}
                       {sLink.title}
                     </span>
                   </SmartLink>
